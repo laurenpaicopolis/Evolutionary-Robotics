@@ -15,3 +15,6 @@ class SENSOR:
     def prepare_to_sense(self):
         for linkName in pyrosim.linkNamesToIndices:
             self.sensors[linkName] = SENSOR(linkName)
+
+    def save_values(self):
+        numpy.save(c.backLegFile, self.values, allow_pickle=True, fix_imports=True)
