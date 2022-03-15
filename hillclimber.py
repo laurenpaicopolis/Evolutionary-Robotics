@@ -17,8 +17,8 @@ class HILLCLIMBER:
         self.Spawn()
         self.Mutate()
         self.child.evaluate("DIRECT")
-        self.Print()
         self.Select()
+        self.Print()
 
     def Spawn(self):
         self.child = copy.deepcopy(self.parent)

@@ -16,7 +16,7 @@ class SOLUTION:
         os.system("python3 simulate.py " + type)
         f = open("fitness.txt", "r")
         value = f.read()
-        self.fitness = str(value)
+        self.fitness = float(value)
         f.close()
 
     def create_world(self):
