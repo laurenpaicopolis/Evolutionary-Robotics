@@ -7,6 +7,6 @@ phaseOffset = 0
 backLegFile = "data/BackLegSensorValues.npy"
 frontLegFile = "data/FrontLegSensorValues.npy"
 motorFile = "data/MotorData.npy"
-timeSteps = 1000
+timeSteps = 10000
 maxForceValue = 500
 timeTics = 1/20
