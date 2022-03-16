@@ -16,7 +16,6 @@ class ROBOT:
         for value in self.sensors:
             sensorObj = self.sensors[value]
             sensorObj.get_value(current_time_step)
-        
 
     def prepare_to_act(self):
         for jointName in pyrosim.jointNamesToIndices:

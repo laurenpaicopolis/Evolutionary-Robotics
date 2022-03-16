@@ -10,14 +10,16 @@ class SOLUTION:
     def __init__(self):
         self.weights = numpy.random.rand(3, 2)
         self.weights = self.weights * 2 - 1
-        self.fitness = 0
 
     def evaluate(self, type):
-        os.system("python3 simulate.py " + type)
+        self.create_world()
+        self.create_body()
+        self.create_brain()
         f = open("fitness.txt", "r")
-        value = f.read()
-        self.fitness = float(value)
+        fitnessValue = f.read()
+        self.fitness = float(fitnessValue)
         f.close()
+        os.system("python3 simulate.py " + type)
 
     def create_world(self):
         pyrosim.Start_SDF("world.sdf")

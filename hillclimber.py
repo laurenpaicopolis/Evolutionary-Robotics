@@ -15,7 +15,7 @@ class HILLCLIMBER:
 
     def Evolve_For_One_Generation(self):
         self.Spawn()
-        self.Mutate()
+        self.mutate()
         self.child.evaluate("DIRECT")
         self.Select()
         self.Print()
@@ -23,7 +23,7 @@ class HILLCLIMBER:
     def Spawn(self):
         self.child = copy.deepcopy(self.parent)
 
-    def Mutate(self):
+    def mutate(self):
         self.child.Mutate()
 
     def Select(self):
