@@ -17,8 +17,8 @@ class HILLCLIMBER:
         self.Spawn()
         self.mutate()
         self.child.evaluate("DIRECT")
-        self.Select()
         self.Print()
+        self.Select()
 
     def Spawn(self):
         self.child = copy.deepcopy(self.parent)
@@ -31,7 +31,8 @@ class HILLCLIMBER:
             self.parent = self.child
 
     def Print(self):
-        print(str(self.parent.fitness) + ", " + str(self.child.fitness))
+        print("\n")
+        print(f"Parent: {self.parent.fitness}, Child: {self.parent.fitness} ")
 
     def show_best(self):
         self.parent.evaluate("GUI")

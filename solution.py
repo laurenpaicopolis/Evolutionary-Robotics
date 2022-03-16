@@ -15,11 +15,10 @@ class SOLUTION:
         self.create_world()
         self.create_body()
         self.create_brain()
-        f = open("fitness.txt", "r")
-        fitnessValue = f.read()
-        self.fitness = float(fitnessValue)
-        f.close()
         os.system("python3 simulate.py " + type)
+        with open("fitness.txt", "r") as f:
+            fitnessValue = f.read()
+        self.fitness = float(fitnessValue)
 
     def create_world(self):
         pyrosim.Start_SDF("world.sdf")
@@ -42,8 +41,8 @@ class SOLUTION:
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
         pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
-        pyrosim.Send_Motor_Neuron(name=0, jointName="Torso_BackLeg")
-        pyrosim.Send_Motor_Neuron(name=1, jointName="Torso_FrontLeg")
+        pyrosim.Send_Motor_Neuron(name=3, jointName="Torso_BackLeg")
+        pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_FrontLeg")
 
         for currentRow in range(3):
             for currentColumn in (0, 1):

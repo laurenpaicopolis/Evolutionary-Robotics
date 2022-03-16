@@ -24,7 +24,6 @@ class SIMULATION:
             p.stepSimulation()
             self.robot.sense(current_time_step)
             self.robot.think()
-            self.robot.prepare_to_act()
             self.robot.act()
             time.sleep(c.timeTics)
 
