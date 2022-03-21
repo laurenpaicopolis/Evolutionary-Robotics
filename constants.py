@@ -10,4 +10,5 @@ motorFile = "data/MotorData.npy"
 timeSteps = 1000
 maxForceValue = 50
 timeTics = 1/500
-numberOfGenerations = 15
+numberOfGenerations = 10
+populationSize = 10

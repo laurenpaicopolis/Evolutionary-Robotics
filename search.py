@@ -1,9 +1,8 @@
 import os
-import hillclimber
+import parallelHillClimber
 
-hc = hillclimber.HILLCLIMBER()
-hc.show_best()
-hc.evolve()
-hc.show_best()
+phc = parallelHillClimber.PARALLEL_HILL_CLIMBER()
+phc.evolve()
+phc.show_best()
 
 

@@ -8,8 +8,9 @@ import time
 
 class SIMULATION:
 
-    def __init__(self, directOrGUI):
-        if directOrGUI == "DIRECT":
+    def __init__(self, directOrGUI, solutionID):
+        self.directOrGUI = directOrGUI
+        if self.directOrGUI == "DIRECT":
             self.physicsClient = p.connect(p.DIRECT)
         else:
             self.physicsClient = p.connect(p.GUI)
@@ -17,7 +18,7 @@ class SIMULATION:
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0, 0, -9.8)
         self.world = WORLD()
-        self.robot = ROBOT()
+        self.robot = ROBOT(solutionID)
 
     def run(self):
         for current_time_step in range(c.timeSteps):
@@ -25,7 +26,8 @@ class SIMULATION:
             self.robot.sense(current_time_step)
             self.robot.think()
             self.robot.act()
-            time.sleep(c.timeTics)
+            if self.directOrGUI == "GUI":
+                time.sleep(c.timeTics)
 
     def get_fitness(self):
         self.robot.get_fitness()

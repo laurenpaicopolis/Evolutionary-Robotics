@@ -10,13 +10,16 @@ class NEURAL_NETWORK:
 
         self.synapses = {}
 
-        f = open(nndfFileName,"r")
+        try:
+            file = open(nndfFileName, 'r')
+        except IOError:
+            file = open(nndfFileName, 'w+')
 
-        for line in f.readlines():
+        for line in file.readlines():
 
             self.Digest(line)
 
-        f.close()
+        file.close()
 
     def Print(self):
 
