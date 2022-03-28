@@ -12,3 +12,5 @@ maxForceValue = 50
 timeTics = 1/500
 numberOfGenerations = 10
 populationSize = 10
+numSensorNeurons = 3
+numMotorNeurons = 2
