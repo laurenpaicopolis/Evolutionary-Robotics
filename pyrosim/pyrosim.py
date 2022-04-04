@@ -70,9 +70,13 @@ def Prepare_Link_Dictionary(bodyID):
 
         jointInfo = p.getJointInfo( bodyID , jointIndex )
 
+        #print(jointInfo)
+
         jointName = jointInfo[1].decode('utf-8')
 
         jointName = jointName.split("_")
+
+        #print(jointName)
 
         linkName = jointName[1]
 
