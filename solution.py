@@ -4,6 +4,7 @@ import os
 import random
 import time
 import constants as c
+import math
 length = width = height = 1
 x = 0
 y = 0.5
@@ -15,6 +16,7 @@ class SOLUTION:
         self.myID = nextAvailableID
         self.weights = (numpy.random.rand(c.numSensorNeurons, c.numMotorNeurons) * 2) - 1
         self.weights = self.weights * c.numMotorNeurons - 1
+        self.zyFitness = 0
 
     def start_simulate(self, type):
         self.create_world()
@@ -27,12 +29,13 @@ class SOLUTION:
             time.sleep(0.01)
         with open("fitness" + str(self.myID) + ".txt", "r") as f:
             fitnessValue = f.read()
-        self.fitness = float(fitnessValue)
+            print("Fitness Value")
+            print(fitnessValue)
+        self.zyFitness = float(fitnessValue)
         os.system("rm fitness" + str(self.myID) + ".txt")
 
     def create_world(self):
         pyrosim.Start_SDF("world.sdf")
-        pyrosim.Send_Cube(name="Box", pos=[4, 4, 0], size=[length, width, height])
         pyrosim.End()
 
     def create_body(self):
@@ -53,8 +56,8 @@ class SOLUTION:
         pyrosim.Send_Cube(name="LowerLegTwo", pos=[0, 0, -0.2], size=[0.2, 0.2, 0.4])
 
         # ARMS
-        pyrosim.Send_Cube(name="ArmOne", pos=[0, 0, -0.375], size=[0.2, 0.25, 0.75])
-        pyrosim.Send_Cube(name="ArmTwo", pos=[0, 0, -0.375], size=[0.2, 0.25, 0.75])
+        pyrosim.Send_Cube(name="ArmOne", pos=[0, 0, -0.375], size=[0.2, 0.2, 0.75])
+        pyrosim.Send_Cube(name="ArmTwo", pos=[0, 0, -0.375], size=[0.2, 0.2, 0.75])
 
         # FEET
         pyrosim.Send_Cube(name="FootOne", pos=[0.05, 0, -0.05], size=[0.3, 0.2, 0.1])
@@ -68,9 +71,9 @@ class SOLUTION:
 
         # UPPER LEG JOINTS
         pyrosim.Send_Joint(name="Torso_UpperLegOne", parent="Torso", child="UpperLegOne", type="revolute",
-                          position=[0, 0.875, 1.5], jointAxis="0 1 0")
+                          position=[0, 0.875, 1.5], jointAxis="0 1 0", rotationLimitLower=-math.pi/4, rotationLimitUpper=math.pi/4)
         pyrosim.Send_Joint(name="Torso_UpperLegTwo", parent="Torso", child="UpperLegTwo", type="revolute",
-                          position=[0, 1.125, 1.5], jointAxis="0 1 0")
+                          position=[0, 1.125, 1.5], jointAxis="0 1 0", rotationLimitLower=-math.pi/4, rotationLimitUpper=math.pi/4)
 
         # ARM JOINTS
         pyrosim.Send_Joint(name="ShoulderTwo_ArmOne", parent="ShoulderTwo", child="ArmOne", type="revolute",
@@ -80,15 +83,15 @@ class SOLUTION:
 
         # LOWER LEG JOINTS
         pyrosim.Send_Joint(name="UpperLegOne_LowerLegOne", parent="UpperLegOne", child="LowerLegOne", type="revolute",
-                           position=[0,0,-0.5], jointAxis="0 1 0")
+                           position=[0,0,-0.5], jointAxis="0 1 0", rotationLimitLower=0, rotationLimitUpper=math.pi/12)
         pyrosim.Send_Joint(name="UpperLegTwo_LowerLegTwo", parent="UpperLegTwo", child="LowerLegTwo", type="revolute",
-                           position=[0, 0, -0.5], jointAxis="0 1 0")
+                           position=[0, 0, -0.5], jointAxis="0 1 0", rotationLimitLower=0, rotationLimitUpper=math.pi/12)
 
         # FEET JOINTS
         pyrosim.Send_Joint(name="LowerLegOne_FootOne", parent="LowerLegOne", child="FootOne", type="revolute",
-                          position=[0, 0, -0.4], jointAxis="0 1 0")
+                          position=[0, 0, -0.4], jointAxis="0 1 0", rotationLimitLower=-math.pi/12, rotationLimitUpper=math.pi/12)
         pyrosim.Send_Joint(name="LowerLegTwo_FootTwo", parent="LowerLegTwo", child="FootTwo", type="revolute",
-                          position=[0, 0, -0.4], jointAxis="0 1 0")
+                          position=[0, 0, -0.4], jointAxis="0 1 0", rotationLimitLower=-math.pi/12, rotationLimitUpper=math.pi/12)
 
         pyrosim.End()
 
@@ -126,9 +129,10 @@ class SOLUTION:
         pyrosim.End()
 
     def Mutate(self):
-        randomRow = random.randint(-1, c.numMotorNeurons)
-        randomColumn = random.randint(-1, 1)
-        self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
+        for _ in range(3):
+            randomRow = random.randint(-1, c.numMotorNeurons)
+            randomColumn = random.randint(-1, 1)
+            self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
 
     def setID(self, nextAvailableID):
         self.myID = nextAvailableID

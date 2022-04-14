@@ -162,7 +162,7 @@
         <visual>
             <origin xyz="0 0 -0.375" rpy="0 0 0"/>
             <geometry>
-                <box size="0.2 0.25 0.75" />
+                <box size="0.2 0.2 0.75" />
             </geometry>
             <material name="Cyan">
                 <color rgba="0 1.0 1.0 1.0"/>
@@ -171,7 +171,7 @@
         <collision>
             <origin xyz="0 0 -0.375" rpy="0 0 0"/>
             <geometry>
-                <box size="0.2 0.25 0.75" />
+                <box size="0.2 0.2 0.75" />
             </geometry>
         </collision>
     </link>
@@ -184,7 +184,7 @@
         <visual>
             <origin xyz="0 0 -0.375" rpy="0 0 0"/>
             <geometry>
-                <box size="0.2 0.25 0.75" />
+                <box size="0.2 0.2 0.75" />
             </geometry>
             <material name="Cyan">
                 <color rgba="0 1.0 1.0 1.0"/>
@@ -193,7 +193,7 @@
         <collision>
             <origin xyz="0 0 -0.375" rpy="0 0 0"/>
             <geometry>
-                <box size="0.2 0.25 0.75" />
+                <box size="0.2 0.2 0.75" />
             </geometry>
         </collision>
     </link>
@@ -246,69 +246,69 @@
        <child  link="ShoulderOne"/>
        <origin rpy="0 0 0" xyz="0 1.25 2.2" />
      <axis xyz="0 1 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="-3.141592653589793" upper="3.141592653589793" velocity="0.0"/>
     </joint>
     <joint name="Torso_ShoulderTwo" type="revolute">
        <parent link="Torso"/>
        <child  link="ShoulderTwo"/>
        <origin rpy="0 0 0" xyz="0 0.75 2.2" />
      <axis xyz="0 1 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="-3.141592653589793" upper="3.141592653589793" velocity="0.0"/>
     </joint>
     <joint name="Torso_UpperLegOne" type="revolute">
        <parent link="Torso"/>
        <child  link="UpperLegOne"/>
        <origin rpy="0 0 0" xyz="0 0.875 1.5" />
      <axis xyz="0 1 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="-0.7853981633974483" upper="0.7853981633974483" velocity="0.0"/>
     </joint>
     <joint name="Torso_UpperLegTwo" type="revolute">
        <parent link="Torso"/>
        <child  link="UpperLegTwo"/>
        <origin rpy="0 0 0" xyz="0 1.125 1.5" />
      <axis xyz="0 1 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="-0.7853981633974483" upper="0.7853981633974483" velocity="0.0"/>
     </joint>
     <joint name="ShoulderTwo_ArmOne" type="revolute">
        <parent link="ShoulderTwo"/>
        <child  link="ArmOne"/>
        <origin rpy="0 0 0" xyz="0 -0.2 -0.1" />
      <axis xyz="1 0 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="-3.141592653589793" upper="3.141592653589793" velocity="0.0"/>
     </joint>
     <joint name="ShoulderOne_ArmTwo" type="revolute">
        <parent link="ShoulderOne"/>
        <child  link="ArmTwo"/>
        <origin rpy="0 0 0" xyz="0 0.2 -0.1" />
      <axis xyz="1 0 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="-3.141592653589793" upper="3.141592653589793" velocity="0.0"/>
     </joint>
     <joint name="UpperLegOne_LowerLegOne" type="revolute">
        <parent link="UpperLegOne"/>
        <child  link="LowerLegOne"/>
        <origin rpy="0 0 0" xyz="0 0 -0.5" />
      <axis xyz="0 1 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="0" upper="0.2617993877991494" velocity="0.0"/>
     </joint>
     <joint name="UpperLegTwo_LowerLegTwo" type="revolute">
        <parent link="UpperLegTwo"/>
        <child  link="LowerLegTwo"/>
        <origin rpy="0 0 0" xyz="0 0 -0.5" />
      <axis xyz="0 1 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="0" upper="0.2617993877991494" velocity="0.0"/>
     </joint>
     <joint name="LowerLegOne_FootOne" type="revolute">
        <parent link="LowerLegOne"/>
        <child  link="FootOne"/>
        <origin rpy="0 0 0" xyz="0 0 -0.4" />
      <axis xyz="0 1 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="-0.2617993877991494" upper="0.2617993877991494" velocity="0.0"/>
     </joint>
     <joint name="LowerLegTwo_FootTwo" type="revolute">
        <parent link="LowerLegTwo"/>
        <child  link="FootTwo"/>
        <origin rpy="0 0 0" xyz="0 0 -0.4" />
      <axis xyz="0 1 0"/>
-       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+       <limit effort="0.0" lower="-0.2617993877991494" upper="0.2617993877991494" velocity="0.0"/>
     </joint>
 </robot>

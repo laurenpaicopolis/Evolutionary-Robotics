@@ -14,6 +14,8 @@ from pyrosim.urdf  import URDF
 
 from pyrosim.joint import JOINT
 
+import math
+
 SDF_FILETYPE  = 0
 
 URDF_FILETYPE = 1
@@ -136,9 +138,9 @@ def Send_Cube(name="default",pos=[0,0,0],size=[1,1,1]):
 
     availableLinkIndex = availableLinkIndex + 1
 
-def Send_Joint(name,parent,child,type,position, jointAxis):
+def Send_Joint(name,parent,child,type,position, jointAxis, rotationLimitLower=-math.pi, rotationLimitUpper=math.pi):
 
-    joint = JOINT(name,parent,child,type,position)
+    joint = JOINT(name,parent,child,type,position, rotationLimitLower, rotationLimitUpper)
 
     joint.Save(f, jointAxis)
 

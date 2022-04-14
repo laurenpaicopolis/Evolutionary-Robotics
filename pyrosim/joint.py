@@ -1,8 +1,9 @@
 from pyrosim.commonFunctions import Save_Whitespace
+import math
 
 class JOINT: 
 
-    def __init__(self,name,parent,child,type,position):
+    def __init__(self,name,parent,child,type,position, rotationLimitLower=-math.pi, rotationLimitUpper=math.pi):
 
         self.name = name
 
@@ -15,6 +16,10 @@ class JOINT:
         self.position = position
 
         self.depth = 1
+
+        self.rotationLimitLower = rotationLimitLower
+
+        self.rotationLimitUpper = rotationLimitUpper
 
     def Save(self,f, jointAxis):
 
@@ -35,7 +40,7 @@ class JOINT:
         f.write(' <axis xyz="' + jointAxis + '"/>\n')
 
         Save_Whitespace(self.depth,f)
-        f.write('   <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>\n')
+        f.write(f'   <limit effort="0.0" lower="{self.rotationLimitLower}" upper="{self.rotationLimitUpper}" velocity="0.0"/>\n')
 
         Save_Whitespace(self.depth,f)
         f.write('</joint>' + '\n')
