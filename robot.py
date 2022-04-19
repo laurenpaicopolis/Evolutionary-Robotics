@@ -4,6 +4,7 @@ from motor import MOTOR
 from sensor import SENSOR
 import os
 import constants as c
+import math
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class ROBOT:
@@ -22,7 +23,12 @@ class ROBOT:
     def sense(self, current_time_step):
         for value in self.sensors:
             sensorObj = self.sensors[value]
-            sensorObj.get_value(current_time_step)
+            if value == "RightLeg":
+                sensorObj.values[current_time_step] = math.sin(0.5 * current_time_step)
+                print(math.sin(0.5 * current_time_step))
+            else:
+                sensorObj.get_value(current_time_step)
+
 
     def prepare_to_act(self):
         for jointName in pyrosim.jointNamesToIndices:
