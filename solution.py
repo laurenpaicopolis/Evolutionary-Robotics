@@ -13,8 +13,7 @@ class SOLUTION:
 
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
-        self.weights = numpy.random.rand(c.numSensorNeurons, c.numMotorNeurons)
-        self.weights = self.weights * c.numMotorNeurons - 1
+        self.weights = numpy.random.rand(c.numSensorNeurons, c.numMotorNeurons) * 2 - 1
 
     def start_simulate(self, type):
         self.create_world()
@@ -98,9 +97,9 @@ class SOLUTION:
         pyrosim.End()
 
     def Mutate(self):
-        randomRow = random.randint(0, c.numMotorNeurons)
-        randomColumn = random.randint(0, 1)
-        self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
+        randomRow = random.randint(0, self.weights.shape[0] - 1)
+        randomColumn = random.randint(0, self.weights.shape[1] - 1)
+        self.weights[randomRow][randomColumn] = random.random() * 2 - 1
 
     def setID(self, nextAvailableID):
         self.myID = nextAvailableID
