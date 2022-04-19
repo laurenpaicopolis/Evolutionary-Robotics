@@ -23,11 +23,7 @@ class ROBOT:
     def sense(self, current_time_step):
         for value in self.sensors:
             sensorObj = self.sensors[value]
-            if value == "RightLeg":
-                sensorObj.values[current_time_step] = math.sin(0.5 * current_time_step)
-                print(math.sin(0.5 * current_time_step))
-            else:
-                sensorObj.get_value(current_time_step)
+            sensorObj.get_value(current_time_step)
 
 
     def prepare_to_act(self):
