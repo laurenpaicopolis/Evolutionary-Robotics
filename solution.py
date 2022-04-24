@@ -14,8 +14,7 @@ class SOLUTION:
 
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
-        self.weights = (numpy.random.rand(c.numSensorNeurons, c.numMotorNeurons) * 2) - 1
-        self.weights = self.weights * c.numMotorNeurons - 1
+        self.weights = numpy.random.rand(c.numSensorNeurons, c.numMotorNeurons) * 2 - 1
         self.zyFitness = 0
 
     def start_simulate(self, type):
@@ -129,10 +128,9 @@ class SOLUTION:
         pyrosim.End()
 
     def Mutate(self):
-        for _ in range(3):
-            randomRow = random.randint(-1, c.numMotorNeurons)
-            randomColumn = random.randint(-1, 1)
-            self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
+        randomRow = random.randint(0, self.weights.shape[0] - 1)
+        randomColumn = random.randint(0, self.weights.shape[1] - 1)
+        self.weights[randomRow][randomColumn] = random.random() * 2 - 1
 
     def setID(self, nextAvailableID):
         self.myID = nextAvailableID

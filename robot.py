@@ -65,7 +65,7 @@ class ROBOT:
         sdUpperLegTwo = statistics.pstdev(self.upperLegTwoMotors)
         sdUpperLegOne = statistics.pstdev(self.upperLegOneMotors)
 
-        '''v = self.upperLegOneMotors
+        v = self.upperLegOneMotors
         sameOrDifferentLegOne = []
         for n1, n2 in zip(v[:-1], v[1:]):
             if n2 < n1:
@@ -96,21 +96,21 @@ class ROBOT:
                 reward -= 1
             else:
                 reward += 1
-            #totalDifLegOne /= (c.timeSteps - 1)
+            totalDifLegOne /= (c.timeSteps - 1)
 
         v2 = self.shoulderOneArm
         totalDifShoulderOne = 0
         for n1, n2 in zip(v2[:-1], v2[1:]):
             diff = abs(n1 - n2)
             totalDifShoulderOne += diff
-            # totalDifLegOne /= (c.timeSteps - 1)
+            totalDifLegOne /= (c.timeSteps - 1)
 
         v2 = self.shoulderTwoArm
         totalDifShoulderTwo = 0
         for n1, n2 in zip(v2[:-1], v2[1:]):
             diff = abs(n1 - n2)
             totalDifShoulderTwo += diff
-            # totalDifLegOne /= (c.timeSteps - 1)
+            totalDifLegOne /= (c.timeSteps - 1)
 
 
         v = self.upperLegTwoMotors
@@ -129,7 +129,7 @@ class ROBOT:
                 direction -= 1
             elif n2 > n1 and count > 10:
                 direction -= 1
-            #sameOrDifferentLegOne.append(direction)
+            sameOrDifferentLegOne.append(direction)
 
         v = self.upperLegOneMotors
         sameOrDifferentLegTwo = []
@@ -147,7 +147,7 @@ class ROBOT:
                 directionTwo -= 1
             elif n2 > n1 and count > 10:
                 directionTwo -= 1
-            # sameOrDifferentLegOne.append(direction)
+            sameOrDifferentLegOne.append(direction)
 
         rewardTwo = 0
         count = 0
@@ -167,12 +167,12 @@ class ROBOT:
         for n1, n2 in zip(v3[:-1], v3[1:]):
             diff = abs(n1 - n2)
             totalDifLegTwo += diff
-            #totalDifLegTwo /= (c.timeSteps - 1)
+            totalDifLegTwo /= (c.timeSteps - 1)
 
         
 
-        #rewardTwo /= c.timeSteps
-        #reward /= c.timeSteps
+        rewardTwo /= c.timeSteps
+        reward /= c.timeSteps
 
         v2 = self.upperLegOneMotors
         totalDifLegOne = []
@@ -186,7 +186,7 @@ class ROBOT:
                 reward -= 1
             else:
                 reward += 1
-            # totalDifLegOne /= (c.timeSteps - 1)
+            totalDifLegOne /= (c.timeSteps - 1)
 
         v2 = self.upperLegTwoMotors
         totalDifLegTwo = []
@@ -200,11 +200,10 @@ class ROBOT:
                 rewardTwo -= 1
             else:
                 rewardTwo += 1
-'''
 
-        #fitnessSum = (totalDifLegOne + totalDifLegTwo) + (yCoordinateOfLinkZero * 1.5)
-        #fitnessSum = direction + directionTwo + (zCoordinateOfLinkZero * 50)
-        fitnessSum =  yCoordinateOfLinkZero
+
+        fitnessSum = direction + directionTwo + (zCoordinateOfLinkZero * 50) + (totalDifLegOne + totalDifLegTwo) + (yCoordinateOfLinkZero * 1.5)
+        #fitnessSum =  yCoordinateOfLinkZero
         with open("tmp" + str(self.myID) + ".txt", "w") as f:
             f.write(str(fitnessSum))
         os.system("mv tmp" + str(self.myID) + ".txt fitness" + str(self.myID) + ".txt")
