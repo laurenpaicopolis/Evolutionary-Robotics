@@ -5,6 +5,7 @@ from sensor import SENSOR
 import os
 import constants as c
 from pyrosim.neuralNetwork import NEURAL_NETWORK
+import math
 
 class ROBOT:
 
@@ -22,7 +23,10 @@ class ROBOT:
     def sense(self, current_time_step):
         for value in self.sensors:
             sensorObj = self.sensors[value]
-            sensorObj.get_value(current_time_step)
+            if value == "RightLeg":
+                sensorObj.values[current_time_step] = math.sin(c.CPGFreq * current_time_step)
+            else:
+                sensorObj.get_value(current_time_step)
 
     def prepare_to_act(self):
         for jointName in pyrosim.jointNamesToIndices:

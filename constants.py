@@ -15,3 +15,4 @@ populationSize = 5
 numSensorNeurons = 17
 numMotorNeurons = 16
 motorJointRange = 0.2
+CPGFreq = 0.5
